@@ -65,15 +65,23 @@ public class Main {
     }
 
     private static ListNode initLinkedList(int num) {
-        ListNode head = new ListNode(1);
-        ListNode cur = head;
-        int i = 2;
-        while (i < num + 1) {
-            cur.next = new ListNode(i);
-            cur = cur.next;
+        int i = 1;
+        ListNode head = new ListNode(i);
+        i++;
+        while (i <= num) {
+            createNodeAtTail(head, i);
             i++;
         }
         return head;
+    }
+
+    public static void createNodeAtTail(ListNode head, int val) {
+        ListNode newNode = new ListNode(val);
+        ListNode tail = head;
+        while (null != tail.next) {
+            tail = tail.next;
+        }
+        tail.next = newNode;
     }
 
     private static void printLinkedList(ListNode head) {
