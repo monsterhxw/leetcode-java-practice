@@ -1,5 +1,8 @@
 package algorithm;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author monstervivi
  */
@@ -8,8 +11,12 @@ public class Main {
     public static void main(String[] args) {
         ListNode node = initLinkedList(4);
         createCycle(node);
-        System.out.println("using double pointers (Floyd’s Cycle-Finding Algorithm) to detect loop in a linked list");
+
+        System.out.println("using double pointers (Floyd’s Cycle-Finding Algorithm) to detect loop in a linked list.");
         System.out.println(hasCycleUsingDoublePointers(node));
+
+        System.out.println("using hashing to detect loop in a linked list.");
+        System.out.println(hasCycleUsingHashing(node));
     }
 
     public static boolean hasCycleUsingDoublePointers(ListNode head) {
@@ -26,6 +33,21 @@ public class Main {
             fast = fast.next.next;
         }
         return true;
+    }
+
+    public static boolean hasCycleUsingHashing(ListNode head) {
+        if (null == head) {
+            return false;
+        }
+        Set<ListNode> nodesSeen = new HashSet<>();
+        while (null != head) {
+            if (nodesSeen.contains(head)) {
+                return true;
+            }
+            nodesSeen.add(head);
+            head = head.next;
+        }
+        return false;
     }
 
     public static void createCycle(ListNode head) {
