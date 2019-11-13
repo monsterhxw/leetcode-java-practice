@@ -35,24 +35,24 @@ public class Main {
         // 增加一个特殊的节点，下一个节点指向 head
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        // 创建 temp 指针指向 pre
-        ListNode temp = dummy;
+        // 创建 pre 指针指向 dummy
+        ListNode pre = dummy;
         // 创建 a, b 指针用于指向需要交换的两个节点
         ListNode a = null;
         ListNode b = null;
-        while (null != temp.next && null != temp.next.next) {
+        while (null != pre.next && null != pre.next.next) {
             // a 指向需要交换的第一个节点
-            a = temp.next;
+            a = pre.next;
             // b 指向需要交换的第二个节点
             b = a.next;
             // temp 的下一个节点指向由指向 a 指针变成指向 b 指针
-            temp.next = b;
+            pre.next = b;
             // a 的下一个节点指向 b 指针的下一个节点
             a.next = b.next;
             // b 指针的下一个节点指向 a 指针
             b.next = a;
             // temp 指向交换后的第二个节点即 a 指针
-            temp = a;
+            pre = a;
         }
         return dummy.next;
     }
