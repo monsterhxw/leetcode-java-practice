@@ -12,6 +12,9 @@ public class Main {
         printList(removeElements(head, 0));
         System.out.print("use dummy head to remove element 0: ");
         printList(removeElementsUsingDummyHead(head, 0));
+        printList(removeElements(head, 0));
+        System.out.print("use recursion to remove element 0: ");
+        printList(removeElementsUsingRecursion(head, 0));
     }
 
     public static ListNode removeElements(ListNode head, int val) {
@@ -46,6 +49,13 @@ public class Main {
         return dummyHead.next;
     }
 
+    public static ListNode removeElementsUsingRecursion(ListNode head, int val) {
+        if (null == head) {
+            return null;
+        }
+        head.next = removeElementsUsingRecursion(head.next, val);
+        return head.val == val ? head.next : head;
+    }
 
     private static void generateListNode() {
         for (int i = 0; i < 5; i++) {
@@ -64,10 +74,10 @@ public class Main {
     }
 
     private static void printList(ListNode head) {
-        ListNode dummy = head;
-        while (null != dummy) {
-            System.out.print(dummy.val + " -> ");
-            dummy = dummy.next;
+        ListNode cur = head;
+        while (null != cur) {
+            System.out.print(cur.val + " -> ");
+            cur = cur.next;
         }
         System.out.print("null \n");
     }
