@@ -12,7 +12,6 @@ public class Main {
         printList(removeElements(head, 0));
         System.out.print("use dummy head to remove element 0: ");
         printList(removeElementsUsingDummyHead(head, 0));
-        printList(removeElements(head, 0));
         System.out.print("use recursion to remove element 0: ");
         printList(removeElementsUsingRecursion(head, 0));
     }
