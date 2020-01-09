@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author monstervivi
@@ -19,6 +19,46 @@ public class Main {
         System.out.println((new Main()).threeSumUsingBF(nums));
 
         System.out.println((new Main()).threeSumUsingSet(nums));
+
+        System.out.println((new Main()).threeSumUsingTwoPointer(nums));
+    }
+
+    public List<List<Integer>> threeSumUsingTwoPointer(int[] nums) {
+        if (nums.length < 3) {
+            return Collections.EMPTY_LIST;
+        }
+        List<List<Integer>> result = new LinkedList<>();
+        // 排序
+        Arrays.sort(nums);
+        // 查找
+        for (int i = 0; i < nums.length - 2; i++) {
+            // 与上一个值相等，则上一轮已经找到过相同解法
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum < 0) {
+                    left++;
+                } else if (sum > 0) {
+                    right--;
+                } else {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    // 检查前一个和这一个用的数字是否相同，避免重复性问题
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
+                    }
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                }
+            }
+        }
+        return result;
     }
 
     public List<List<Integer>> threeSumUsingSet(int[] nums) {
