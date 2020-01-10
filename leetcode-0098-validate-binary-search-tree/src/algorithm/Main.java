@@ -2,18 +2,43 @@ package algorithm;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author monstervivi
  */
 public class Main {
 
+    private Integer prev;
+
     public static void main(String[] args) {
         List<TreeNode> treeNodes = (new Main()).initExampleTree();
-        treeNodes.forEach(treeNode -> System.out.println((new Main()).isValidBST(treeNode)));
+        treeNodes.forEach(treeNode -> System.out.println((new Main()).isValidBSTUsingRecursion(treeNode)));
+        System.out.print("\n");
+        treeNodes.forEach(treeNode -> System.out.println((new Main()).isValidBSTUsingInOrder(treeNode)));
     }
 
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBSTUsingInOrder(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        // 遍历左子树
+        if (!isValidBSTUsingInOrder(root.left)) {
+            return false;
+        }
+        // 遍历根
+        if (prev != null && prev >= root.val) {
+            return false;
+        }
+        prev = root.val;
+        // 遍历右子树
+        if (!isValidBSTUsingInOrder(root.right)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidBSTUsingRecursion(TreeNode root) {
         return isValidBSTUsingRecursion(root, null, null);
     }
 
@@ -60,6 +85,11 @@ public class Main {
         treeNodeTwoRoot.left = treeNodeTwoLevel1Left;
         treeNodeTwoRoot.right = treeNodeTwoLevel1Right;
         treeNodes.add(treeNodeTwoRoot);
+
+        TreeNode treeNodeThreeLevel1Left = new TreeNode(1);
+        TreeNode treeNodeThreeRoot = new TreeNode(1);
+        treeNodeThreeRoot.left = treeNodeThreeLevel1Left;
+        treeNodes.add(treeNodeThreeRoot);
 
         return treeNodes;
     }
