@@ -1,11 +1,9 @@
 package algorithm;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * @author monstervivi
@@ -13,9 +11,30 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
-        TreeNode root = (new Main()).createBinaryTree();
-        List<List<Integer>> levelOrder = (new Main()).levelOrderUsingBFS(root);
-        System.out.println(levelOrder);
+        Main main = new Main();
+        TreeNode root = main.createBinaryTree();
+        System.out.println("using BFS : " + main.levelOrderUsingBFS(root));
+        System.out.println("using DFS : " + main.levelOrderUsingDFS(root));
+    }
+
+    public List<List<Integer>> levelOrderUsingDFS(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        dfsHelper(root, 0, result);
+        return result;
+    }
+
+    private void dfsHelper(TreeNode node, int level, List<List<Integer>> result) {
+        if (node == null) {
+            return;
+        }
+        if (result.size() < level + 1) {
+            result.add(new ArrayList<>());
+        }
+
+        result.get(level).add(node.val);
+
+        dfsHelper(node.left, level + 1, result);
+        dfsHelper(node.right, level + 1, result);
     }
 
     public List<List<Integer>> levelOrderUsingBFS(TreeNode root) {
