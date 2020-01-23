@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.logging.Level;
-
 /** @author monstervivi */
 public class Main {
 
