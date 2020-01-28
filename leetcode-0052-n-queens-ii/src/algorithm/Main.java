@@ -3,12 +3,34 @@ package algorithm;
 /** @author monstervivi */
 public class Main {
 
-  int count = 0;
+  int countUsingBit = 0;
+  int countUsingArray = 0;
 
   public static void main(String[] args) {
     Main main = new Main();
     int n = 8;
     System.out.println("using dfs and arrays : " + main.totalNQueensUsingDFSAndArrays(n));
+    System.out.println("using dfs and bit : " + main.totalNQueensUsingDFSAndBit(n));
+  }
+
+  public int totalNQueensUsingDFSAndBit(int n) {
+    backTrackUsingBit(0, 0, 0, 0, n);
+    return countUsingBit;
+  }
+
+  public void backTrackUsingBit(int row, int col, int pie, int na, int n) {
+    if (row >= n) {
+      countUsingBit++;
+      return;
+    }
+
+    int bits = (~(col | na | pie)) & ((1 << n) - 1);
+
+    while (bits > 0) {
+      int lowBit = bits & (-bits);
+      backTrackUsingBit(row + 1, col | lowBit, (pie | lowBit) << 1, (na | lowBit) >> 1, n);
+      bits = bits & (bits - 1);
+    }
   }
 
   public int totalNQueensUsingDFSAndArrays(int n) {
@@ -19,13 +41,13 @@ public class Main {
     int[] diff = new int[2 * n - 1];
     int[] sum = new int[2 * n - 1];
     backTrack(0, n, col, diff, sum);
-    return count;
+    return countUsingArray;
   }
 
   private void backTrack(int dept, int n, int[] col, int[] diff, int[] sum) {
     // recursion terminator
     if (dept == n) {
-      count++;
+      countUsingArray++;
       return;
     }
 
