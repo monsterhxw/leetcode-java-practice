@@ -7,16 +7,31 @@ public class Main {
     Main main = new Main();
     int x = 5;
     System.out.println(
-        "using binary search : " + "x = " + x + ", square root is " + main.mySqrt(x));
+        "using binary search : "
+            + "x = "
+            + x
+            + ", square root is "
+            + main.mySqrtUsingBinarySearch(x));
+    System.out.println(
+        "using binary search : "
+            + "x = "
+            + x
+            + ", square root is "
+            + main.mSqrtDoubleAndUsingBinarySearch(x, 1e-9));
   }
 
-  public int mySqrt(int x) {
+  public int mySqrtUsingBinarySearch(int x) {
+    if (x < 0) {
+      return -1;
+    }
+
     if (x == 0 || x == 1) {
       return x;
     }
+
     int left = 0;
     int right = x;
-    int result = 0;
+
     while (left <= right) {
       int middle = left + (right - left) / 2;
       if (middle == x / middle) {
@@ -25,9 +40,34 @@ public class Main {
         right = middle - 1;
       } else {
         left = middle + 1;
-        result = middle;
       }
     }
-    return result;
+
+    return left;
+  }
+
+  public double mSqrtDoubleAndUsingBinarySearch(int x, double epsilon) {
+    if (x < 0) {
+      return -1;
+    }
+    if (x == 0 || x == 1) {
+      return x;
+    }
+
+    double left = 0;
+    double right = x;
+
+    while (left <= right) {
+      double mid = left + (right - left) / 2;
+      if (Math.abs(mid - x / mid) < epsilon) {
+        return mid;
+      } else if (mid > x / mid) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+
+    return Double.NEGATIVE_INFINITY;
   }
 }
