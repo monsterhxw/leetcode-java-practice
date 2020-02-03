@@ -18,6 +18,54 @@ public class Main {
             + x
             + ", square root is "
             + main.mSqrtDoubleAndUsingBinarySearch(x, 1e-9));
+    System.out.println(
+        "using Newton's method : "
+            + "x = "
+            + x
+            + ", square root is "
+            + main.mySqrtUsingNewtonMethod(x));
+    System.out.println(
+        "using Newton's method : "
+            + "x = "
+            + x
+            + ", square root is "
+            + main.mySqrtDoubleAndUsingNewtonMethod(x, 1e-9));
+  }
+
+  public int mySqrtUsingNewtonMethod(int x) {
+    if (x < 0) {
+      return -1;
+    }
+
+    if (x == 0 || x == 1) {
+      return x;
+    }
+
+    long r = x;
+
+    while (r * r > x) {
+      r = (r + x / r) / 2;
+    }
+
+    return (int) r;
+  }
+
+  public double mySqrtDoubleAndUsingNewtonMethod(int x, double epsilon) {
+    if (x < 0) {
+      return Double.NaN;
+    }
+
+    if (x == 0 || x == 1) {
+      return x;
+    }
+
+    double r = x;
+
+    while (Math.abs(r - x / r) > epsilon / r) {
+      r = (r + x / r) / 2;
+    }
+
+    return r;
   }
 
   public int mySqrtUsingBinarySearch(int x) {
@@ -43,7 +91,7 @@ public class Main {
       }
     }
 
-    return left;
+    return left - 1;
   }
 
   public double mSqrtDoubleAndUsingBinarySearch(int x, double epsilon) {
