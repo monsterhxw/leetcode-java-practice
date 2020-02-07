@@ -18,6 +18,8 @@ public class Main {
           {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
         };
     System.out.println(main.isValidSudoku(board));
+    System.out.println(
+        "using bitwise operation solution : " + main.isValidSudokuUsingBitwiseOperation(board));
   }
 
   public boolean isValidSudoku(char[][] board) {
@@ -47,6 +49,38 @@ public class Main {
         }
       }
     }
+    return true;
+  }
+
+  public boolean isValidSudokuUsingBitwiseOperation(char[][] board) {
+    int[] row = new int[9];
+    int[] col = new int[9];
+    int[] block = new int[9];
+    // 遍历矩阵的每一个值
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
+        // 当前字符是 '.' 则跳过, 直接进入下一轮循环
+        if (board[i][j] == '.') {
+          continue;
+        }
+        int num = board[i][j] - 48;
+        int blockIndex = (i / 3) * 3 + j / 3;
+        // 验证行，列，3 * 3 宫格
+        if (!valid(row, i, num) || !valid(col, j, num) || !valid(block, blockIndex, num)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean valid(int[] arr, int index, int num) {
+    // num 出现过, 返回false
+    if (((arr[index] >> num) & 1) == 1) {
+      return false;
+    }
+    // num 没出现过, 标记为出现过
+    arr[index] = arr[index] | 1 << num;
     return true;
   }
 }
