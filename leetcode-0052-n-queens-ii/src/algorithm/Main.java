@@ -24,21 +24,22 @@ public class Main {
       return;
     }
 
-    // 获得所有的有效空位
+    // 得到当前所有的空位
     // (col | pie(/ sum) | na(\ diff)) 可以得到所有被占的空位，取反之后将有效空位置为 1
     // 与上 (1 << n) - 1，是设定考虑范围，比如 8 皇后，那么只用考虑低 8 位即可
     int bits = (~(col | na | pie)) & ((1 << n) - 1);
 
     // bit > 0 表示有空位
     while (bits > 0) {
-      // 选择最低位的一个空位
+      // 取到最低位的 1
+      // -bits 将 bits 取反加 1
       int lowBit = bits & (-bits);
 
       // col | lowBit 是将 col 中当前选择的这一列置为 1，也就是无效
       // (pie | lowBit) << 1 是设置之前行和当前行对左下的影响
       // (na | lowBit) >> 1 是设置之前行和当前行对右下的影响
       backTrackUsingBit(row + 1, col | lowBit, (pie | lowBit) << 1, (na | lowBit) >> 1, n);
-      // 将当前选择的这个最低位置为 0
+      // 去掉最低位的 1
       bits = bits & (bits - 1);
     }
   }
