@@ -21,7 +21,7 @@ public class Main {
 
   public int climbStairsUsingBacktracking(int n) {
     int memo[] = new int[n + 1];
-    return climb_Stairs(0, n, memo);
+    return climbStairs(0, n, memo);
   }
 
   public int climbStairs(int i, int n, int memo[]) {
