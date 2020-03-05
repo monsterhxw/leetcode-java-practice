@@ -5,37 +5,16 @@ public class Main {
 
   public static void main(String[] args) {
     Main main = new Main();
-    int n = 3;
-    System.out.println("using dynamic programming : result is " + main.climbStairs(n));
-  }
+    int n = 34;
 
-  public int climbStairs(int n) {
-    int[] dp = new int[n + 1];
-    dp[0] = 1;
-    dp[1] = 1;
-    for (int i = 2; i <= n; ++i) {
-      dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[n];
-  }
+    System.out.println(
+        "using dynamic programming : n is " + n + ", result is " + main.climbStairsUsingDP(n));
 
-  public int climbStairsUsingBacktracking(int n) {
-    int memo[] = new int[n + 1];
-    return climbStairs(0, n, memo);
-  }
-
-  public int climbStairs(int i, int n, int memo[]) {
-    if (i > n) {
-      return 0;
-    }
-    if (i == n) {
-      return 1;
-    }
-    if (memo[i] > 0) {
-      return memo[i];
-    }
-    memo[i] = climbStairs(i + 1, n, memo) + climbStairs(i + 2, n, memo);
-    return memo[i];
+    System.out.println(
+        "using memoization search : n is "
+            + n
+            + ", result is "
+            + main.climbStairsUsingMemoizationSearch(n));
   }
 
   public int climbStairsUsingDPOptimization(int n) {
@@ -53,5 +32,36 @@ public class Main {
     }
 
     return second;
+  }
+
+  public int climbStairsUsingDP(int n) {
+    int[] dp = new int[n + 1];
+
+    dp[0] = 1;
+    dp[1] = 1;
+
+    for (int i = 2; i <= n; ++i) {
+      dp[i] = dp[i - 1] + dp[i - 2];
+    }
+
+    return dp[n];
+  }
+
+  public int climbStairsUsingMemoizationSearch(int n) {
+    int[] memo = new int[n + 1];
+
+    return calculateWay(n, memo);
+  }
+
+  private int calculateWay(int i, int[] memo) {
+    if (i == 0 || i == 1) {
+      return 1;
+    }
+
+    if (memo[i] == 0) {
+      memo[i] = calculateWay(i - 1, memo) + calculateWay(i - 2, memo);
+    }
+
+    return memo[i];
   }
 }
