@@ -23,6 +23,26 @@ public class Main {
     System.out.println(
         "using memoization search, result is : "
             + main.minimumTotalUsingMemoizationSearch(triangle));
+
+    System.out.println(
+        "using dynamic programming, result is : " + main.minimumTotalUsingDP(triangle));
+  }
+
+  public int minimumTotalUsingDP(List<List<Integer>> triangle) {
+    if (triangle == null || triangle.size() == 0) {
+      return 0;
+    }
+
+    int level = triangle.size();
+    int[] dp = new int[level + 1];
+
+    for (int row = level - 1; row >= 0; row--) {
+      for (int col = 0; col <= row; col++) {
+        dp[col] = Math.min(dp[col], dp[col + 1]) + triangle.get(row).get(col);
+      }
+    }
+
+    return dp[0];
   }
 
   public int minimumTotalUsingMemoizationSearch(List<List<Integer>> triangle) {
