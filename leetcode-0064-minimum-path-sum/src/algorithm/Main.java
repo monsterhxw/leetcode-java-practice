@@ -29,6 +29,36 @@ public class Main {
     System.out.println(
         "using dynamic programming and 2d array : result is "
             + main.minPathSumUsingDPAnd2DArray(grid));
+
+    System.out.println(
+        "using dynamic programming and 1d array : result is "
+            + main.minPathSumUsingDPAnd1DArray(grid));
+  }
+
+  public int minPathSumUsingDPAnd1DArray(int[][] grid) {
+    if (grid == null || grid.length == 0 || grid[0].length == 0) {
+      return 0;
+    }
+
+    int rowSize = grid.length;
+    int colSize = grid[0].length;
+    int[] dp = new int[grid[0].length];
+
+    for (int row = rowSize - 1; row >= 0; row--) {
+      for (int col = colSize - 1; col >= 0; col--) {
+        if (row == rowSize - 1 && col != colSize - 1) {
+          dp[col] = dp[col + 1] + grid[row][col];
+        } else if (col == colSize - 1 && row != rowSize - 1) {
+          dp[col] = dp[col] + grid[row][col];
+        } else if (row != rowSize - 1 && col != colSize - 1) {
+          dp[col] = Math.min(dp[col], dp[col + 1]) + grid[row][col];
+        } else {
+          dp[col] = grid[row][col];
+        }
+      }
+    }
+
+    return dp[0];
   }
 
   public int minPathSumUsingDPAnd2DArray(int[][] grid) {
