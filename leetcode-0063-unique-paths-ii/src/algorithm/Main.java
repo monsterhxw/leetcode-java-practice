@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.Arrays;
-
 /** @author monstervivi */
 public class Main {
 
@@ -25,6 +23,36 @@ public class Main {
     System.out.println(
         "using memoization search, result is "
             + main.uniquePathsWithObstacleUsingMemoizationSearch(obstacleGrid));
+
+    System.out.println(
+        "using dynamic programming, result is "
+            + main.uniquePathsWithObstacleUsingDP(obstacleGrid));
+  }
+
+  public int uniquePathsWithObstacleUsingDP(int[][] obstacleGrid) {
+    if (obstacleGrid == null
+        || obstacleGrid[obstacleGrid.length - 1][obstacleGrid[0].length - 1] == 1) {
+      return 0;
+    }
+
+    if (obstacleGrid.length == 0 && obstacleGrid[0].length == 0) {
+      return 1;
+    }
+
+    int[] dp = new int[obstacleGrid[0].length];
+    dp[obstacleGrid[0].length - 1] = 1;
+
+    for (int row = obstacleGrid.length - 1; row >= 0; row--) {
+      for (int col = obstacleGrid[0].length - 1; col >= 0; col--) {
+        if (obstacleGrid[row][col] == 1) {
+          dp[col] = 0;
+        } else if (col < obstacleGrid[0].length - 1) {
+          dp[col] = dp[col] + dp[col + 1];
+        }
+      }
+    }
+
+    return dp[0];
   }
 
   public int uniquePathsWithObstacleUsingMemoizationSearch(int[][] obstacleGrid) {
