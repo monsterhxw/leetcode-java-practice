@@ -8,7 +8,7 @@ public class Main {
   public static void main(String[] args) {
     Main main = new Main();
 
-    String s = "1025";
+    String s = "1234";
 
     System.out.println("s is : " + s);
 
@@ -16,10 +16,103 @@ public class Main {
 
     System.out.println(
         "using memoization searching , result is : "
-            + main.numDecodingUsingMemoizationSearching(s));
+            + main.numDecodingsUsingMemoizationSearching(s));
+
+    System.out.println(
+        "using dynamic programming, result is : " + main.numDecodingsUsingDynamicProgramming(s));
+
+    System.out.println(
+        "using dynamic programming and optimization, result is : "
+            + main.numDecodingsUsingDPAndOptimization(s));
   }
 
-  public int numDecodingUsingMemoizationSearching(String s) {
+  public int numDecodingsUsingDPAndOptimization(String s) {
+    if (s == null || s.length() == 0) {
+      return 0;
+    }
+
+    int[] dp = new int[s.length() + 1];
+    dp[0] = 1;
+    dp[1] = s.charAt(0) == '0' ? 0 : 1;
+
+    for (int i = 2; i <= s.length(); i++) {
+      int oneDigit = Integer.valueOf(s.substring(i - 1, i));
+      int twoDigits = Integer.valueOf(s.substring(i - 2, i));
+      if (oneDigit >= 1 && oneDigit <= 9) {
+        dp[i] = dp[i] + dp[i - 1];
+      }
+      if (twoDigits >= 10 && twoDigits <= 26) {
+        dp[i] = dp[i] + dp[i - 2];
+      }
+    }
+
+    return dp[s.length()];
+  }
+
+  public int numDecodingsUsingDynamicProgramming(String s) {
+    if (s == null || s.length() == 0 || s.charAt(0) == '0') {
+      return 0;
+    }
+
+    if (s.length() == 1) {
+      return 1;
+    }
+
+    int[] dp = new int[s.length()];
+    // dp[0] 表示一个大小为 1 的字符串，有一种解码
+    dp[0] = 1;
+    if (s.charAt(1) == '0') {
+      if ((s.charAt(0) - '0') * 10 + (s.charAt(1) - '0') <= 26) {
+        dp[1] = 1;
+      } else {
+        return 0;
+      }
+    } else {
+      if ((s.charAt(0) - '0') * 10 + (s.charAt(1) - '0') <= 26) {
+        dp[1] = 2;
+      } else {
+        dp[1] = 1;
+      }
+    }
+
+    for (int i = 2; i < s.length(); i++) {
+      if (s.charAt(i) == '0') {
+        // s[i] 为 ‘0’ 时
+        if (s.charAt(i - 1) == '0') {
+          // 前一个为 ‘0’
+          // 无解
+          return 0;
+        } else {
+          // 前一个不为 ‘0’
+          if ((s.charAt(i - 1) - '0') * 10 + (s.charAt(i) - '0') <= 26) {
+            // s[i-1] 和 s[i] 组成的数 <= 26
+            dp[i] = dp[i - 2];
+          } else {
+            // 无解
+            return 0;
+          }
+        }
+      } else {
+        if (s.charAt(i - 1) == '0') {
+          // 前一个为 ‘0’
+          dp[i] = dp[i - 1];
+        } else {
+          // 前一个不为 ‘0’
+          if ((s.charAt(i - 1) - '0') * 10 + (s.charAt(i) - '0') <= 26) {
+            // s[i-1] 和 s[i] 组成的数 <= 26
+            dp[i] = dp[i - 1] + dp[i - 2];
+          } else {
+            // s[i-1] 和 s[i] 组成的数 > 26
+            dp[i] = dp[i - 1];
+          }
+        }
+      }
+    }
+
+    return dp[s.length() - 1];
+  }
+
+  public int numDecodingsUsingMemoizationSearching(String s) {
     if (s == null || s.length() == 0 || s.charAt(0) == '0') {
       return 0;
     }
