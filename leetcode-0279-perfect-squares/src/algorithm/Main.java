@@ -19,13 +19,32 @@ public class Main {
     System.out.println("using dynamic programming, result is : " + main.numSquaresUsingDP(n));
   }
 
+  // 12
+  // 1, 4, 9
+  //
+  // 1 + minSquares(12 - 1)
+  // ...
+  //
+  // 4 + minSquares(12 - 4)
+  //    4 + 1 + minSquares(8 - 1)
+  //        4 + 1 + 1 + minSquares(7 - 1)
+  //        4 + 1 + 4 + minSquares(7 - 4)
+  //        ....
+  //    4 + 4 + minSquares(8 - 4)
+  //        4 + 4 + 1 + min(4 - 1)
+  //        4 + 4 + 4 + min(4 - 4)
+  //        ...
+  // 9 + minSquares(12 - 9)
+  //    9 + 1 + minSquares(3 - 1)
+  //    ...
+  //
   public int numSquaresUsingDP(int n) {
     int[] dp = new int[n + 1];
     dp[0] = 0;
 
     for (int i = 1; i <= n; i++) {
       dp[i] = i;
-      for (int j = 1; i - j * j >= 0; j++) {
+      for (int j = 1; j * j <= i; j++) {
         dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
       }
     }
