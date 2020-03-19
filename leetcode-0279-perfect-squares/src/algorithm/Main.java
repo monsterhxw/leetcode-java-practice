@@ -11,12 +11,17 @@ public class Main {
   public static void main(String[] args) {
     Main main = new Main();
 
-    int n = 13;
+    int n = 1;
     System.out.println("n is : " + n);
 
     System.out.println("using bfs, result is : " + main.numSquaresUsingBFS(n));
 
     System.out.println("using dynamic programming, result is : " + main.numSquaresUsingDP(n));
+
+    System.out.println("using dfs, result is : " + main.numSquaresUsingDFS(n));
+
+    System.out.println(
+        "using memoization search, result is : " + main.numSquaresUsingMemoizationSearch(n));
   }
 
   // 12
@@ -50,6 +55,58 @@ public class Main {
     }
 
     return dp[n];
+  }
+
+  public int numSquaresUsingMemoizationSearch(int n) {
+    if (n <= 1) {
+      return n;
+    }
+
+    Integer[] memo = new Integer[n + 1];
+
+    return memoHelper(n, memo);
+  }
+
+  private int memoHelper(int n, Integer[] memo) {
+    if (n == 0) {
+      return 0;
+    }
+
+    if (memo[n] != null) {
+      return memo[n];
+    }
+
+    int result = n;
+
+    for (int i = 1; i * i <= n; i++) {
+      result = Math.min(result, memoHelper(n - i * i, memo) + 1);
+    }
+
+    memo[n] = result;
+
+    return memo[n];
+  }
+
+  public int numSquaresUsingDFS(int n) {
+    if (n <= 1) {
+      return n;
+    }
+
+    return dfsHelper(n);
+  }
+
+  private int dfsHelper(int n) {
+    if (n == 0) {
+      return 0;
+    }
+
+    int result = n;
+
+    for (int i = 1; i * i <= n; i++) {
+      result = Math.min(result, dfsHelper(n - i * i) + 1);
+    }
+
+    return result;
   }
 
   public int numSquaresUsingBFS(int n) {
