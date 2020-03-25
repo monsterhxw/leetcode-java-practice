@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.Arrays;
-
 /** @author monstervivi */
 public class Main {
 
