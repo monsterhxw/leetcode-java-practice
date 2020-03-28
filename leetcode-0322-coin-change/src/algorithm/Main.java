@@ -20,6 +20,30 @@ public class Main {
 
     System.out.println(
         "using memoization search, result is " + main.coinChangeUsingMemoization(coins, amount));
+
+    System.out.println(
+        "using dynamic programming, result is " + main.coinChangeUsingDP(coins, amount));
+  }
+
+  public int coinChangeUsingDP(int[] coins, int amount) {
+    if (coins == null || coins.length == 0) {
+      return -1;
+    }
+
+    int[] dp = new int[amount + 1];
+    dp[0] = 0;
+
+    for (int i = 1; i <= amount; i++) {
+      dp[i] = amount + 1;
+      for (int j = 0; j < coins.length; j++) {
+        if (i < coins[j]) {
+          continue;
+        }
+        dp[i] = Math.min(dp[i - coins[j]] + 1, dp[i]);
+      }
+    }
+
+    return dp[amount] == amount + 1 ? -1 : dp[amount];
   }
 
   public int coinChangeUsingRecursive(int[] coins, int amount) {
