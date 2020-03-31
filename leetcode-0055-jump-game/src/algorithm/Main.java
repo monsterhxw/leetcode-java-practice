@@ -21,6 +21,23 @@ public class Main {
     System.out.println(
         "using dynamic programming, result is : "
             + main.canJumpUsingDynamicProgrammingApproach(nums));
+
+    System.out.println(
+        "using greedy approach, result is : "
+            + main.canJumpUsingGreedyApproach(nums));
+  }
+
+  public boolean canJumpUsingGreedyApproach(int[] nums) {
+    int maxJumpPosition = nums.length - 1;
+
+    for (int prev = nums.length - 2; prev >= 0; prev --) {
+      int curr = prev + nums[prev];
+      if (curr >= maxJumpPosition) {
+        maxJumpPosition = prev;
+      }
+    }
+
+    return maxJumpPosition == 0;
   }
 
   public boolean canJumpUsingDynamicProgrammingApproach(int[] nums) {
