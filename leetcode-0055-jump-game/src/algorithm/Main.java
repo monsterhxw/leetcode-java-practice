@@ -6,7 +6,7 @@ public class Main {
   public static void main(String[] args) {
     Main main = new Main();
 
-    int[] nums = new int[] {2, 0};
+    int[] nums = new int[] {3, 2, 1, 0, 4};
 
     for (int i = 0; i < nums.length; i++) {
       System.out.print(nums[i] + " ");
@@ -17,6 +17,31 @@ public class Main {
 
     System.out.println(
         "using memoization search, result is : " + main.canJumpUsingMemoizationSearch(nums));
+
+    System.out.println(
+        "using dynamic programming, result is : "
+            + main.canJumpUsingDynamicProgrammingApproach(nums));
+  }
+
+  public boolean canJumpUsingDynamicProgrammingApproach(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return false;
+    }
+
+    boolean[] dp = new boolean[nums.length];
+    dp[nums.length - 1] = true;
+
+    for (int prev = nums.length - 2; prev >= 0; prev--) {
+      int furthestJump = Math.min(prev + nums[prev], nums.length - 1);
+      for (int next = prev + 1; next <= furthestJump; next++) {
+        if (dp[next]) {
+          dp[prev] = true;
+          break;
+        }
+      }
+    }
+
+    return dp[0];
   }
 
   public boolean canJumpUsingMemoizationSearch(int[] nums) {
