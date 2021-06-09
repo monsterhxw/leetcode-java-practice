@@ -4,7 +4,7 @@ package algorithm;
  * 适用于区间为空、答案不存在、有重复元素、搜索开/闭的上/下界等情况
  *
  * @author XueweiHuang
- * @reference https://www.zhihu.com/question/36132386
+ * @see <a href="https://www.zhihu.com/question/36132386">@Jason Li</a>
  */
 public class LowerBoundBinarySearch {
 
