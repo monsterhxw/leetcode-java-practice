@@ -1,7 +1,5 @@
 package algorithm;
 
-import com.sun.tools.javac.util.StringUtils;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +11,8 @@ public class Test {
     TreeNode root = generateBinaryTree(values);
 
     testRecursionSolution(root);
+
+    testIterationSolution(root);
   }
 
   private static TreeNode generateBinaryTree(Integer[] values) {
@@ -21,11 +21,25 @@ public class Test {
 
   private static void testRecursionSolution(TreeNode root) {
     RecursionSolution solution = new RecursionSolution();
+
     List<Integer> result = solution.preorderTraversal(root);
 
+    print(result, "Recursive");
+  }
+
+  private static void testIterationSolution(TreeNode root) {
+    IterationSolution solution = new IterationSolution();
+
+    List<Integer> result = solution.preorderTraversal(root);
+
+    print(result, "Iterative");
+  }
+
+  private static void print(List<Integer> result, String caller) {
     List<String> strResults = result.stream().map(Object::toString).collect(Collectors.toList());
+
     String resultStr = String.join(",", strResults);
 
-    System.out.println("Using Recursive Pre-Order Traversal is: " + resultStr);
+    System.out.println("Using " + caller + " Pre-Order Traversal is: " + resultStr);
   }
 }
