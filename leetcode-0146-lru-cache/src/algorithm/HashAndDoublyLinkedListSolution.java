@@ -12,7 +12,7 @@ public class HashAndDoublyLinkedListSolution {
 
     private final int capacity;
 
-    class Entry {
+    static class Entry {
 
         private int key;
         private int value;
@@ -60,8 +60,8 @@ public class HashAndDoublyLinkedListSolution {
         } else {
             Entry newEntry = new Entry(key, value);
             if (map.size() >= capacity) {
-                Entry evictedEntry = evictLRUEnd();
-                map.remove(evictedEntry.key);
+                Entry evicted = evictLRUEnd();
+                map.remove(evicted.key);
             }
             putToMRUEnd(newEntry);
             map.put(key, newEntry);
