@@ -14,11 +14,20 @@ public class Test {
     Arrays.stream(height).forEach(System.out::print);
     System.out.println();
     testTwoPointersSolution(height);
+    testBruteForceSolution(height);
   }
 
   public static void testTwoPointersSolution(int[] height) {
     System.out.println("----------test TwoPointersSolution----------");
     TwoPointersSolution solution = new TwoPointersSolution();
+    int maxArea = solution.maxArea(height);
+    System.out.println("Maximum Area is: " + maxArea);
+    System.out.println();
+  }
+
+  public static void testBruteForceSolution(int[] height) {
+    System.out.println("----------testBruteForceSolution----------");
+    BruteForceSolution solution = new BruteForceSolution();
     int maxArea = solution.maxArea(height);
     System.out.println("Maximum Area is: " + maxArea);
     System.out.println();
