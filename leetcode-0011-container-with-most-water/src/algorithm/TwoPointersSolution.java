@@ -13,8 +13,8 @@ public class TwoPointersSolution {
     while (left < right) {
       int area = 0;
       if (height[left] <= height[right]) {
-       area = height[left] * (right - left);
-       left++;
+        area = height[left] * (right - left);
+        left++;
       } else {
         area = height[right] * (right - left);
         right--;
