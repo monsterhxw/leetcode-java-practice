@@ -11,12 +11,29 @@ public class Test {
   public static void main(String[] args) {
     int[] nums = new int[] {3, 2, 0, -4};
     ListNode head = arrayToList(nums, 1);
+
     testSetSolution(head);
+
+    testFloydCycleDetectionAlgorithmSolution(head);
+
+    testBrentCycleDetectionAlgorithmSolution(head);
   }
 
   private static void testSetSolution(ListNode head) {
     System.out.println("----------testSetSolution----------");
     SetSolution solution = new SetSolution();
+    System.out.println("has cycle? " + solution.hasCycle(head));
+  }
+
+  private static void testFloydCycleDetectionAlgorithmSolution(ListNode head) {
+    System.out.println("----------testFloydCycleDetectionAlgorithmSolution----------");
+    FloydCycleDetectionAlgorithmSolution solution = new FloydCycleDetectionAlgorithmSolution();
+    System.out.println("has cycle? " + solution.hasCycle(head));
+  }
+
+  private static void testBrentCycleDetectionAlgorithmSolution(ListNode head) {
+    System.out.println("----------testBrentCycleDetectionAlgorithmSolution----------");
+    BrentCycleDetectionAlgorithmSolution solution = new BrentCycleDetectionAlgorithmSolution();
     System.out.println("has cycle? " + solution.hasCycle(head));
   }
 
