@@ -7,29 +7,37 @@ package algorithm;
 public class Test {
   public static void main(String[] args) {
     testTwoStackSolution();
+
+    testStackNodeSolution();
   }
 
-  private static void testMiniStack(MiniStack miniStack) {
-    System.out.println("caller class name is: " + miniStack.getClass().getSimpleName());
-    miniStack.push(-2);
+  private static void testMiniStack(MinStack minStack) {
+    System.out.println("caller class name is: " + minStack.getClass().getSimpleName());
+    minStack.push(-2);
     System.out.println("call push(-2)");
-    miniStack.push(0);
+    minStack.push(0);
     System.out.println("call push(0)");
-    miniStack.push(-3);
+    minStack.push(-3);
     System.out.println("call push(-3)");
-    int min = miniStack.getMin();
+    int min = minStack.getMin();
     System.out.println("call getMin(): result is: " + min);
-    miniStack.pop();
+    minStack.pop();
     System.out.println("call pop()");
-    int top = miniStack.top();
+    int top = minStack.top();
     System.out.println("call top(): result is: " + top);
-    min = miniStack.getMin();
+    min = minStack.getMin();
     System.out.println("call getMin(): result is: " + min);
   }
 
   private static void testTwoStackSolution() {
     System.out.println("----------testTwoStackSolution----------");
-    MiniStack miniStack = new TwoStackSolution();
-    testMiniStack(miniStack);
+    MinStack minStack = new TwoStackSolution();
+    testMiniStack(minStack);
+  }
+
+  private static void testStackNodeSolution() {
+    System.out.println("-----------testStackNodeSolution---------");
+    MinStack minStack = new StackNodeSolution();
+    testMiniStack(minStack);
   }
 }

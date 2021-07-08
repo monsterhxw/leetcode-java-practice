@@ -6,7 +6,7 @@ import java.util.Stack;
  * @author XueweiHuang
  * @created 2021-07-08
  */
-public class TwoStackSolution implements MiniStack {
+public class TwoStackSolution implements MinStack {
 
   private Stack<Integer> stack;
 
