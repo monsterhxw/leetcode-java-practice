@@ -9,6 +9,8 @@ public class Test {
     testTwoStackSolution();
 
     testStackNodeSolution();
+
+    testCustomStackSolution();
   }
 
   private static void testMiniStack(MinStack minStack) {
@@ -38,6 +40,12 @@ public class Test {
   private static void testStackNodeSolution() {
     System.out.println("-----------testStackNodeSolution---------");
     MinStack minStack = new StackNodeSolution();
+    testMiniStack(minStack);
+  }
+
+  private static void testCustomStackSolution() {
+    System.out.println("-----------testCustomStackSolution---------");
+    MinStack minStack = new CustomStackSolution();
     testMiniStack(minStack);
   }
 }

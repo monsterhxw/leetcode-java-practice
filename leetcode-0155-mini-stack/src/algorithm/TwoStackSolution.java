@@ -3,6 +3,8 @@ package algorithm;
 import java.util.Stack;
 
 /**
+ * push()&pop()&top()&getMin():Time Complexity: O(1); Space Complexity: O(n);
+ *
  * @author XueweiHuang
  * @created 2021-07-08
  */
