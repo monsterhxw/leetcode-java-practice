@@ -14,11 +14,19 @@ public class Test {
     System.out.println("Target is: " + target);
 
     testBruteForceSolution(target, nums);
+
+    testSlidingWindowSolution(target, nums);
   }
 
   private static void testBruteForceSolution(int target, int[] nums) {
     System.out.println("----------testBruteForceSolution----------");
     BruteForceSolution solution = new BruteForceSolution();
+    System.out.println("min sub-array length is: " + solution.minSubArrayLen(target, nums));
+  }
+
+  private static void testSlidingWindowSolution(int target, int[] nums) {
+    System.out.println("----------testSlidingWindowSolution----------");
+    SlidingWindowSolution solution = new SlidingWindowSolution();
     System.out.println("min sub-array length is: " + solution.minSubArrayLen(target, nums));
   }
 }
