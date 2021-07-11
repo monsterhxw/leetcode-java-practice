@@ -16,6 +16,8 @@ public class Test {
     testBruteForceSolution(target, nums);
 
     testSlidingWindowSolution(target, nums);
+
+    testPrefixSumAndBinarySearchSolution(target, nums);
   }
 
   private static void testBruteForceSolution(int target, int[] nums) {
@@ -27,6 +29,12 @@ public class Test {
   private static void testSlidingWindowSolution(int target, int[] nums) {
     System.out.println("----------testSlidingWindowSolution----------");
     SlidingWindowSolution solution = new SlidingWindowSolution();
+    System.out.println("min sub-array length is: " + solution.minSubArrayLen(target, nums));
+  }
+
+  private static void testPrefixSumAndBinarySearchSolution(int target, int[] nums) {
+    System.out.println("----------testPrefixSumAndBinarySearchSolution----------");
+    PrefixSumAndBinarySearchSolution solution = new PrefixSumAndBinarySearchSolution();
     System.out.println("min sub-array length is: " + solution.minSubArrayLen(target, nums));
   }
 }
