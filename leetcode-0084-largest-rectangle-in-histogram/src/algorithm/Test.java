@@ -15,6 +15,8 @@ public class Test {
     testBruteForceFixedWidthSolution(heights);
 
     testBruteForceFixedHeightSolution(heights);
+
+    testMonotonicStackSolution(heights);
   }
 
   private static void testBruteForceFixedWidthSolution(int[] heights) {
@@ -26,6 +28,12 @@ public class Test {
   private static void testBruteForceFixedHeightSolution(int[] heights) {
     System.out.println("----------testBruteForceFixedHeightSolution----------");
     BruteForceFixedHeightSolution solution = new BruteForceFixedHeightSolution();
+    System.out.println("largest rectangle area is: " + solution.largestRectangleArea(heights));
+  }
+
+  private static void testMonotonicStackSolution(int[] heights) {
+    System.out.println("----------testMonotonicStackSolution----------");
+    MonotonicStackSolution solution = new MonotonicStackSolution();
     System.out.println("largest rectangle area is: " + solution.largestRectangleArea(heights));
   }
 }
