@@ -14,11 +14,20 @@ public class Test {
     System.out.println("k is: " + k);
 
     testPriorityQueueSolution(nums, k);
+
+    testMonotonicQueueSolution(nums, k);
   }
 
   private static void testPriorityQueueSolution(int[] nums, int k) {
     System.out.println("----------testPriorityQueueSolution----------");
     PriorityQueueSolution solution = new PriorityQueueSolution();
+    System.out.println(
+        "max sliding window result is: " + Arrays.toString(solution.maxSlidingWindow(nums, k)));
+  }
+
+  private static void testMonotonicQueueSolution(int[] nums, int k) {
+    System.out.println("-----------testPriorityQueueSolution---------");
+    MonotonicQueueSolution solution = new MonotonicQueueSolution();
     System.out.println(
         "max sliding window result is: " + Arrays.toString(solution.maxSlidingWindow(nums, k)));
   }
