@@ -12,7 +12,7 @@ public class MaxHeapSolution {
     // delete heap root node; Time Complexity: O(klogn);
     for (int i = nums.length - 1; i >= nums.length - k + 1; i--) {
       swap(nums, 0, i);
-      siftDown(nums, i + 1, 0);
+      siftDown(nums, i, 0);
     }
     return nums[0];
   }
