@@ -1,5 +1,8 @@
 package algorithm.merge2lists;
 
+import static algorithm.ListNode.createSinglyLinkedList;
+import static algorithm.ListNode.printLinkedList;
+
 import algorithm.ListNode;
 
 /**
@@ -8,7 +11,7 @@ import algorithm.ListNode;
  */
 public class Test {
   public static void main(String[] args) {
-    int[] nums1 = new int[] {1, 4, 5};
+    int[] nums1 = new int[] {1, 1, 3, 4, 5};
     int[] nums2 = new int[] {1, 3};
     ListNode first = createSinglyLinkedList(nums1);
     System.out.print("first list is: ");
@@ -26,35 +29,5 @@ public class Test {
     ListNode merged = solution.mergeTwoLists(first, second);
     System.out.print("The merged List is: ");
     printLinkedList(merged);
-  }
-
-  private static ListNode createSinglyLinkedList(int[] nums) {
-    if (null == nums || 0 == nums.length) {
-      return new ListNode();
-    } else {
-      ListNode head = new ListNode(nums[0]);
-      for (int i = 1; i < nums.length; i++) {
-        createNodeAtTail(head, nums[i]);
-      }
-      return head;
-    }
-  }
-
-  private static void createNodeAtTail(ListNode head, int val) {
-    ListNode newNode = new ListNode(val);
-    ListNode tail = head;
-    while (null != tail.next) {
-      tail = tail.next;
-    }
-    tail.next = newNode;
-  }
-
-  private static void printLinkedList(ListNode head) {
-    ListNode cur = head;
-    while (null != cur) {
-      System.out.print(String.format("%d%s", cur.val, cur.next != null ? "->" : "->null"));
-      cur = cur.next;
-    }
-    System.out.println();
   }
 }
