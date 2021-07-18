@@ -11,6 +11,8 @@ public class Test {
     testDivideAndConquerRecursiveSolution(creatListNodeArray());
 
     testPriorityQueueSolution(creatListNodeArray());
+
+    testMinHeapSolution(creatListNodeArray());
   }
 
   private static void testBruteForceSolution(ListNode[] lists) {
@@ -33,6 +35,14 @@ public class Test {
     System.out.println("----------testPriorityQueueSolution-----------");
     print(lists);
     PriorityQueueSolution solution = new PriorityQueueSolution();
+    System.out.println("call mergeKLists: ");
+    ListNode.printLinkedList(solution.mergeKLists(lists));
+  }
+
+  private static void testMinHeapSolution(ListNode[] lists) {
+    System.out.println("----------testMinHeapSolution-----------");
+    print(lists);
+    MinHeapSolution solution = new MinHeapSolution();
     System.out.println("call mergeKLists: ");
     ListNode.printLinkedList(solution.mergeKLists(lists));
   }
