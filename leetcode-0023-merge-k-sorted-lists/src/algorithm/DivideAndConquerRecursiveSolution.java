@@ -5,7 +5,7 @@ package algorithm;
  * @created 2021-07-16
  */
 public class DivideAndConquerRecursiveSolution {
-  /** Time Complexity: O(); Space Complexity: O(); */
+  /** Time Complexity: O(knlogk); Space Complexity: O(logk); */
   public ListNode mergeKLists(ListNode[] lists) {
     return merge(lists, 0, lists.length - 1);
   }

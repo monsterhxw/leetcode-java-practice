@@ -9,6 +9,8 @@ public class Test {
     testBruteForceSolution(creatListNodeArray());
 
     testDivideAndConquerRecursiveSolution(creatListNodeArray());
+
+    testPriorityQueueSolution(creatListNodeArray());
   }
 
   private static void testBruteForceSolution(ListNode[] lists) {
@@ -23,6 +25,14 @@ public class Test {
     System.out.println("----------testDivideAndConquerRecursiveSolution-----------");
     print(lists);
     DivideAndConquerRecursiveSolution solution = new DivideAndConquerRecursiveSolution();
+    System.out.println("call mergeKLists: ");
+    ListNode.printLinkedList(solution.mergeKLists(lists));
+  }
+
+  private static void testPriorityQueueSolution(ListNode[] lists) {
+    System.out.println("----------testPriorityQueueSolution-----------");
+    print(lists);
+    PriorityQueueSolution solution = new PriorityQueueSolution();
     System.out.println("call mergeKLists: ");
     ListNode.printLinkedList(solution.mergeKLists(lists));
   }
@@ -44,6 +54,5 @@ public class Test {
     for (int i = 0; i < lists.length; i++) {
       ListNode.printLinkedList(lists[i]);
     }
-    System.out.println();
   }
 }
