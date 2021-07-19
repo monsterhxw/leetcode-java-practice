@@ -12,12 +12,21 @@ public class TestCases {
     System.out.println("string t is: \"" + t + "\"");
 
     testSlidingWindowWithDistanceIncreasingSolution(s, t);
+
+    testSlidingWindowWithDistanceDecreasingSolution(s, t);
   }
 
   private static void testSlidingWindowWithDistanceIncreasingSolution(String s, String t) {
     System.out.println("----------testSlidingWindowWithDistanceIncreasingSolution----------");
     SlidingWindowWithDistanceIncreasingSolution solution =
         new SlidingWindowWithDistanceIncreasingSolution();
+    System.out.println("min window result is: " + "\"" + solution.minWindow(s, t) + "\"");
+  }
+
+  private static void testSlidingWindowWithDistanceDecreasingSolution(String s, String t) {
+    System.out.println("----------testSlidingWindowWithDistanceDecreasingSolution----------");
+    SlidingWindowWithDistanceDecreasingSolution solution =
+        new SlidingWindowWithDistanceDecreasingSolution();
     System.out.println("min window result is: " + "\"" + solution.minWindow(s, t) + "\"");
   }
 }
