@@ -14,6 +14,10 @@ public class TestCases {
     testBruteForceSolution(height);
 
     testDynamicProgrammingSolution(height);
+
+    testMonotonicStackSolution(height);
+
+    testTwoPointerSolution(height);
   }
 
   private static void testBruteForceSolution(int[] height) {
@@ -26,6 +30,20 @@ public class TestCases {
   private static void testDynamicProgrammingSolution(int[] height) {
     System.out.println("-----------testBruteForceSolution---------");
     DynamicProgrammingSolution solution = new DynamicProgrammingSolution();
+    System.out.println(
+        "In this case, [" + solution.trap(height) + "] units of rain water are being trapped.");
+  }
+
+  private static void testMonotonicStackSolution(int[] height) {
+    System.out.println("-----------testMonotonicStackSolution---------");
+    MonotonicStackSolution solution = new MonotonicStackSolution();
+    System.out.println(
+        "In this case, [" + solution.trap(height) + "] units of rain water are being trapped.");
+  }
+
+  private static void testTwoPointerSolution(int[] height) {
+    System.out.println("-----------testTwoPointerSolution---------");
+    TwoPointersSolution solution = new TwoPointersSolution();
     System.out.println(
         "In this case, [" + solution.trap(height) + "] units of rain water are being trapped.");
   }
