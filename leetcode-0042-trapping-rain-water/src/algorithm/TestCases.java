@@ -12,11 +12,20 @@ public class TestCases {
     System.out.println("height is: " + Arrays.toString(height));
 
     testBruteForceSolution(height);
+
+    testDynamicProgrammingSolution(height);
   }
 
   private static void testBruteForceSolution(int[] height) {
     System.out.println("----------testBruteForceSolution----------");
     BruteForceSolution solution = new BruteForceSolution();
+    System.out.println(
+        "In this case, [" + solution.trap(height) + "] units of rain water are being trapped.");
+  }
+
+  private static void testDynamicProgrammingSolution(int[] height) {
+    System.out.println("-----------testBruteForceSolution---------");
+    DynamicProgrammingSolution solution = new DynamicProgrammingSolution();
     System.out.println(
         "In this case, [" + solution.trap(height) + "] units of rain water are being trapped.");
   }
