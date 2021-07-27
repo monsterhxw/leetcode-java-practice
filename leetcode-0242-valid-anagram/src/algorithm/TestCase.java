@@ -11,11 +11,19 @@ public class TestCase {
     System.out.println("Input s = \"" + s + "\", t = \"" + t + "\"");
 
     testHashtableSolution(s, t);
+
+    testSortSolution(s, t);
   }
 
   private static void testHashtableSolution(String s, String t) {
     System.out.println("----------testHashtableSolution----------");
     HashtableSolution solution = new HashtableSolution();
+    System.out.println("Result is: " + solution.isAnagram(s, t));
+  }
+
+  private static void testSortSolution(String s, String t) {
+    System.out.println("----------testHashtableSolution----------");
+    SortSolution solution = new SortSolution();
     System.out.println("Result is: " + solution.isAnagram(s, t));
   }
 }
