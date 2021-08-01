@@ -12,11 +12,19 @@ public class TestCases {
     System.out.println(Arrays.toString(strs));
 
     testSortSolution(strs);
+
+    testCounterSolution(strs);
   }
 
   private static void testSortSolution(String[] strs) {
     System.out.println("----------testSortSolution----------");
     SortSolution solution = new SortSolution();
+    System.out.println("Output: " + solution.groupAnagrams(strs).toString());
+  }
+
+  private static void testCounterSolution(String[] strs) {
+    System.out.println("----------testCounterSolution----------");
+    CounterSolution solution = new CounterSolution();
     System.out.println("Output: " + solution.groupAnagrams(strs).toString());
   }
 }
